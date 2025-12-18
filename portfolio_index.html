@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YONCKY - Motion Designer Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background-color: #f5e9d6;
+            color: #121212;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #ff6b4a;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            opacity: 0.7;
+        }
+        
+        .hero {
+            padding: 4rem 0;
+        }
+        
+        .hero h1 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        
+        .hero p {
+            color: #666;
+            margin-bottom: 3rem;
+        }
+        
+        .divider {
+            width: 100%;
+            height: 1px;
+            background-color: #121212;
+            margin: 2rem 0;
+            opacity: 0.2;
+        }
+        
+        .intro-text {
+            max-width: 800px;
+            margin-top: 4rem;
+        }
+        
+        .intro-text h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        
+        .showreel {
+            padding: 4rem 0;
+        }
+        
+        .showreel h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background-color: #333;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .video-header {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem;
+        }
+        
+        .video-title {
+            display: flex;
+            align-items: center;
+        }
+        
+        .video-title-img {
+            width: 40px;
+            height: 40px;
+            background-color: #ccc;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+        
+        .video-title-text h3 {
+            color: white;
+            font-size: 0.9rem;
+        }
+        
+        .video-title-text p {
+            color: #ddd;
+            font-size: 0.8rem;
+        }
+        
+        .video-controls {
+            display: flex;
+        }
+        
+        .control-icon {
+            width: 24px;
+            height: 24px;
+            background-color: #1f1f1f;
+            border-radius: 50%;
+            margin-left: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .video-footer {
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .play-button {
+            width: 36px;
+            height: 36px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .timeline {
+            flex: 1;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            padding: 0 1rem;
+        }
+        
+        .video-time {
+            color: white;
+            font-size: 0.8rem;
+        }
+        
+        .video-icons {
+            display: flex;
+        }
+        
+        .video-icon {
+            width: 24px;
+            height: 24px;
+            margin-left: 0.5rem;
+            color: white;
+            cursor: pointer;
+        }
+
+        .video-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .video-shape1 {
+            width: 40px;
+            height: 40px;
+            background-color: #aaa;
+            margin-right: 80px;
+        }
+
+        .video-shape2 {
+            width: 80px;
+            height: 80px;
+            background-color: #aaa;
+            border-radius: 50%;
+            background: radial-gradient(circle, #aaa 0%, rgba(51,51,51,1) 80%);
+        }
+        
+        .work-section {
+            padding: 4rem 0;
+        }
+        
+        .work-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            max-width: 100%;
+        }
+        
+        /* ============================================
+           核心: 專案卡片 Hover 動態效果
+           ============================================ */
+        .work-item {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .work-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* 靜態縮圖 */
+        .work-item-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease, opacity 0.7s ease;
+        }
+        
+        /* GIF/影片 預覽 (hover 時顯示) */
+        .work-item-preview {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.7s ease;
+            pointer-events: none;
+        }
+        
+        /* Hover 時圖片放大 + GIF 淡入 */
+        .work-item:hover .work-item-image {
+            transform: scale(1.05);
+            opacity: 0.3;
+        }
+        
+        .work-item:hover .work-item-preview {
+            opacity: 1;
+        }
+        
+        /* 遮罩層 (顯示標題) */
+        .work-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.7) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 2;
+        }
+        
+        .work-item:hover .work-overlay {
+            opacity: 1;
+        }
+        
+        /* 標題動畫 */
+        .work-title {
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.6s ease;
+        }
+        
+        .work-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2rem;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.6s ease 0.1s;
+        }
+        
+        .work-item:hover .work-title,
+        .work-item:hover .work-subtitle {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Footer 樣式 */
+        footer {
+            background-color: #121212;
+            color: white;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-left h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #ff6b4a;
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-contact a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-contact a:hover {
+            color: #ff6b4a;
+        }
+
+        .footer-right {
+            text-align: right;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .footer-social a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid #ff6b4a;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background-color: #ff6b4a;
+        }
+
+        .language-switcher {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #ff6b4a;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .language-switcher:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .intro-text h2 {
+                font-size: 2rem;
+            }
+            
+            nav ul li {
+                margin-left: 1rem;
+            }
+
+            .work-title {
+                font-size: 1.8rem;
+            }
+
+            .work-subtitle {
+                font-size: 1rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-right {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo" id="logo">YONCKY</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="#about">ABOUT</a></li>
+                    <li><a href="#work">WORK</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <section class="hero">
+            <h1 id="profileName">Fan Chuang</h1>
+            <p id="profileTitle">Motion Designer / Interaction Design</p>
+            <div class="divider"></div>
+            
+            <div class="intro-text">
+                <h2 id="profileBio">I'm a MOTION Graphic DESIGNER +++ I focus in Motion Design>>> and {INTERACTIVE design++} with different platforms.<br>Currently BASE in Taipei, Taiwan.</h2>
+            </div>
+        </section>
+        
+        <section class="showreel">
+            <h2>SHOWREEL</h2>
+            <div class="video-container">
+                <div class="video-content">
+                    <div class="video-shape1"></div>
+                    <div class="video-shape2"></div>
+                </div>
+                <div class="video-overlay">
+                    <div class="video-header">
+                        <div class="video-title">
+                            <div class="video-title-img"></div>
+                            <div class="video-title-text">
+                                <h3>Reel 2021</h3>
+                                <p>Yk Motion</p>
+                            </div>
+                        </div>
+                        <div class="video-controls">
+                            <div class="control-icon">♡</div>
+                            <div class="control-icon">⏱</div>
+                            <div class="control-icon">⟨</div>
+                        </div>
+                    </div>
+                    <div class="video-footer">
+                        <div class="play-button">▶</div>
+                        <div class="timeline">
+                            <span class="video-time">01:16</span>
+                        </div>
+                        <div class="video-icons">
+                            <div class="video-icon">⚙</div>
+                            <div class="video-icon">Vimeo</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="work-section" id="work">
+            <h2>SELECTED WORKS</h2>
+            <!-- 專案卡片會在這裡動態生成 -->
+            <div class="work-grid" id="projectsGrid">
+                <!-- JavaScript 會自動填充內容 -->
+            </div>
+        </section>
+    </div>
+    
+    <!-- Footer 區域 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <h3>Let's Work Together</h3>
+                    <div class="footer-contact" id="footerContact">
+                        <!-- 聯絡資訊會自動生成 -->
+                    </div>
+                </div>
+                <div class="footer-right">
+                    <p>© 2024 YONCKY. All rights reserved.</p>
+                    <div class="footer-social" id="footerSocial">
+                        <!-- 社交媒體連結會自動生成 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <div class="language-switcher">EN</div>
+
+    <!-- 引入資料檔 -->
+    <script src="data.js"></script>
+    
+    <!-- 主要 JavaScript -->
+    <script>
+        // ==========================================
+        // 頁面載入時執行
+        // ==========================================
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProfileData();
+            loadProjects();
+            loadFooter();
+            setupLanguageSwitcher();
+        });
+
+        // ==========================================
+        // 函數 1: 載入個人資訊
+        // ==========================================
+        function loadProfileData() {
+            document.getElementById('profileName').textContent = profileData.name;
+            document.getElementById('profileTitle').textContent = profileData.title;
+            document.getElementById('profileBio').innerHTML = profileData.bio;
+        }
+
+        // ==========================================
+        // 函數 2: 載入專案列表 (核心功能!)
+        // ==========================================
+        function loadProjects() {
+            const projectsGrid = document.getElementById('projectsGrid');
+            projectsGrid.innerHTML = '';
+            
+            projects.forEach(project => {
+                // 創建專案卡片 HTML
+                const projectCard = `
+                    <div class="work-item" data-project-id="${project.id}">
+                        <!-- 靜態縮圖 -->
+                        <img class="work-item-image" 
+                             src="${project.thumbnailImage}" 
+                             alt="${project.homeTitle}">
+                        
+                        <!-- GIF/影片預覽 (hover 時顯示) -->
+                        <img class="work-item-preview" 
+                             src="${project.previewGif}" 
+                             alt="${project.homeTitle} preview">
+                        
+                        <!-- 標題遮罩 -->
+                        <div class="work-overlay">
+                            <h3 class="work-title">${project.homeTitle}</h3>
+                            <p class="work-subtitle">${project.homeSubtitle}</p>
+                        </div>
+                    </div>
+                `;
+                
+                projectsGrid.innerHTML += projectCard;
+            });
+            
+            setupProjectClicks();
+        }
+
+        // ==========================================
+        // 函數 3: 設定專案卡片點擊事件
+        // ==========================================
+        function setupProjectClicks() {
+            const workItems = document.querySelectorAll('.work-item');
+            
+            workItems.forEach(item => {
+                // 點擊事件
+                item.addEventListener('click', function() {
+                    const projectId = this.dataset.projectId;
+                    window.location.href = `project.html?id=${projectId}`;
+                });
+
+                // 額外: 滑鼠進入時的效果 (可選)
+                item.addEventListener('mouseenter', function() {
+                    // 可以在這裡加入更多互動效果
+                    console.log(`Hovering over: ${this.dataset.projectId}`);
+                });
+            });
+        }
+
+        // ==========================================
+        // 函數 4: 載入 Footer 聯絡資訊
+        // ==========================================
+        function loadFooter() {
+            const footerContact = document.getElementById('footerContact');
+            const footerSocial = document.getElementById('footerSocial');
+            
+            footerContact.innerHTML = `
+                <a href="mailto:${contactData.email}">${contactData.email}</a>
+                <a href="tel:${contactData.phone}">${contactData.phone}</a>
+            `;
+            
+            footerSocial.innerHTML = `
+                <a href="https://${contactData.instagram}" target="_blank">Instagram</a>
+                <a href="https://${contactData.linkedin}" target="_blank">LinkedIn</a>
+                <a href="https://${contactData.behance}" target="_blank">Behance</a>
+            `;
+        }
+
+        // ==========================================
+        // 函數 5: 語言切換器
+        // ==========================================
+        function setupLanguageSwitcher() {
+            const langSwitcher = document.querySelector('.language-switcher');
+            langSwitcher.addEventListener('click', function() {
+                this.textContent = this.textContent === 'EN' ? 'CN' : 'EN';
+                // 未來可以在這裡加入切換語言的邏輯
+            });
+        }
+    </script>
+</body>
+</html>
