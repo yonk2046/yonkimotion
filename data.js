@@ -13,11 +13,11 @@ profileImage: "images/profolio.jpg"
 // 聯絡資訊 (Footer 用)
 // ===================================
 const contactData = {
-  email: "yoncky@example.com",
-  phone: "+886 912-345-678",
-  instagram: "@yoncky_motion",
+  email: "yonkidesign@gmail.com",
+  phone: e: "+886 928-015-161,
+  instagram: "@tbd",
   linkedin: "linkedin.com/in/fanchuang",
-  behance: "behance.net/yoncky"
+  behance: e: "----
 };
 
 // ===================================
