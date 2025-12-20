@@ -16,7 +16,7 @@ const contactData = {
   email: "yonkidesign@gmail.com",
   phone: e: "+886 928-015-161,
   instagram: "@tbd",
-  linkedin: "linkedin.com/in/fanchuang",
+  linkedin: "https://www.linkedin.com/in/fan-chuang-65175570",
   behance: e: "----
 };
 
