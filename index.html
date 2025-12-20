@@ -32,7 +32,7 @@
         }
         
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 700;
             letter-spacing: 2px;
         }
@@ -60,13 +60,11 @@
         .hero {
             padding: 4rem 0;
         }
-
-        .intro-image img {
-          width: 220px;
-          height: auto;
-          border-radius: 8px;
+        
+        .hero-top {
+            margin-bottom: 3rem;
         }
-
+        
         .hero h1 {
             font-size: 1.2rem;
             font-weight: 500;
@@ -75,7 +73,7 @@
         
         .hero p {
             color: #666;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
         
         .divider {
@@ -86,14 +84,29 @@
             opacity: 0.2;
         }
         
-        .intro-text {
-            max-width: 800px;
+        .intro-section {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
             margin-top: 4rem;
+        }
+        
+        .profile-image {
+            flex-shrink: 0;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .intro-text {
+            flex: 1;
         }
         
         .intro-text h2 {
             font-size: 2.5rem;
-            font-weight: 640;
+            font-weight: 700;
             line-height: 1.2;
             margin-bottom: 1.5rem;
         }
@@ -437,6 +450,16 @@
                 font-size: 2rem;
             }
             
+            .intro-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+            
             nav ul li {
                 margin-left: 1rem;
             }
@@ -463,10 +486,7 @@
 <body>
     <div class="container">
         <header>
-            <div class="logo">
-              <img src="images/logo.png" alt="Yonki Motion Logo">
-            </div>
-
+            <div class="logo" id="logo">YONCKY</div>
             <nav>
                 <ul>
                     <li><a href="index.html">HOME</a></li>
@@ -477,17 +497,17 @@
         </header>
         
         <section class="hero">
-            <h1 id="profileName">Fan Chuang</h1>
-            <p id="profileTitle">Motion Designer / Interaction Design</p>
-             <div class="intro-image">
-            <img src="images/profolio photo.jpg" alt="Profile Photo">
-              </div>
-
-            
+            <div class="hero-top">
+                <h1 id="profileName">Fan Chuang</h1>
+                <p id="profileTitle">Motion Designer / Interaction Design</p>
+            </div>
             <div class="divider"></div>
             
-            <div class="intro-text">
-                <h2 id="profileBio">I'm a MOTION Graphic DESIGNER +++ I focus on Motion, >>>  INTERACTION++ and storytelling with different platforms.<br>Currently BASE in Taipei, Taiwan.</h2>
+            <div class="intro-section">
+                <img id="profileImage" class="profile-image" src="https://via.placeholder.com/200/ff6b4a/ffffff?text=Profile" alt="Profile Photo">
+                <div class="intro-text">
+                    <h2 id="profileBio">I'm a MOTION Graphic DESIGNER +++ I focus in Motion Design>>> and {INTERACTIVE design++} with different platforms.<br>Currently BASE in Taipei, Taiwan.</h2>
+                </div>
             </div>
         </section>
         
@@ -580,6 +600,11 @@
             document.getElementById('profileName').textContent = profileData.name;
             document.getElementById('profileTitle').textContent = profileData.title;
             document.getElementById('profileBio').innerHTML = profileData.bio;
+            
+            // 如果有設定個人照片,就載入
+            if (profileData.profileImage) {
+                document.getElementById('profileImage').src = profileData.profileImage;
+            }
         }
 
         // ==========================================
@@ -667,6 +692,6 @@
                 // 未來可以在這裡加入切換語言的邏輯
             });
         }
-<script src="data.js"></script>
+    </script>
 </body>
 </html>
