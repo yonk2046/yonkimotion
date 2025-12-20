@@ -1,12 +1,11 @@
 // ===================================
 // 個人資訊
 // ===================================
-const profileData = {
-  name: "Fan Chuang",
-  title: "Motion Designer / Interaction Design",
-  bio: "I'm a MOTION Graphic DESIGNER +++ I focus in Motion Design>>> and {INTERACTIVE design++} with different platforms.<br>Currently BASE in Taipei, Taiwan.",
-  showreelVideo: "videos/showreel-2021.mp4",
-profileImage: "images/profolio.jpg" 
+const contactData = {
+  email: "yonkidesign@gmail.com",
+  phone: "+886 928-015-161",
+  linkedin: "https://www.linkedin.com/in/fan-chuang-65175570",
+  vimeo: "https://vimeo.com/yoncky"  
 };
 
 // ===================================
