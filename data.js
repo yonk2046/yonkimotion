@@ -1,11 +1,12 @@
 // ===================================
 // 個人資訊
 // ===================================
-const contactData = {
-  email: "yonkidesign@gmail.com",
-  phone: "+886 928-015-161",
-  linkedin: "https://www.linkedin.com/in/fan-chuang-65175570",
-  vimeo: "https://vimeo.com/yoncky"  
+const profileData = {
+  name: "Fan Chuang",
+  title: "Motion Designer / Interaction Design",
+  bio: "I'm a MOTION Graphic DESIGNER +++ I focus in Motion Design>>> and {INTERACTIVE design++} with different platforms.<br>Currently BASE in Taipei, Taiwan.",
+  showreelVideo: "videos/showreel-2021.mp4",
+  profileImage: "images/profile.jpg"
 };
 
 // ===================================
@@ -13,10 +14,9 @@ const contactData = {
 // ===================================
 const contactData = {
   email: "yonkidesign@gmail.com",
-  phone: e: "+886 928-015-161,
-  instagram: "@tbd",
+  phone: "+886 928-015-161",
   linkedin: "https://www.linkedin.com/in/fan-chuang-65175570",
-  behance: e: "----
+  vimeo: "https://vimeo.com/yoncky"  // ← 改成你的 Vimeo 網址
 };
 
 // ===================================
