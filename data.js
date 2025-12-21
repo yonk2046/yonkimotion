@@ -6,7 +6,7 @@ const profileData = {
   title: "Motion Designer / Interaction Design",
   bio: "I'm a MOTION Graphic DESIGNER +++ I focus in Motion Design>>> and {INTERACTIVE design++} with different platforms.<br>Currently BASE in Taipei, Taiwan.",
   showreelVideo: "videos/showreel-2021.mp4",
-  profileImage: "images/profile.jpg"
+  profileImage: "images/profolio.jpg"
 };
 
 // ===================================
