@@ -95,7 +95,7 @@ const projects = [
       duration: "3 months",
       
       // 主要影片
-      mainVideo: "videos/projects/project1/main-video.mp4",
+      mainVideo: "https://player.vimeo.com/video/1173206156?badge=0&autopause=0&player_id=0&app_id=58479",
       
       // 專案描述
       description: `
