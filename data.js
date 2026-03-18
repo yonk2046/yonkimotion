@@ -6,7 +6,7 @@ const profileData = {
   title: "Motion Designer / Interaction Design",
   bio: "I'm a MOTION Graphic DESIGNER +++ I focus in Motion Design>>> and {INTERACTIVE design++} with different platforms.<br>Currently BASE in Taipei, Taiwan.",
   showreelVideo: "videos/showreel-2021.mp4",
-  profileImage: "images/mee.jpg"
+  profileImage: "images/profile.jpg"
 };
 
 // ===================================
@@ -16,7 +16,7 @@ const contactData = {
   email: "yonkidesign@gmail.com",
   phone: "+886 928-015-161",
   linkedin: "https://www.linkedin.com/in/fan-chuang-65175570",
-  vimeo: "https://vimeo.com/yoncky"  // ← 改成你的 Vimeo 網址
+  vimeo: "https://vimeo.com/yonk20" 
 };
 
 // ===================================
@@ -25,6 +25,57 @@ const contactData = {
 const projects = [
   {
     // 專案 ID (用於 URL,不要有空格或特殊符號)
+    id: "2026-short-showreel",
+    
+    // ===== 首頁顯示用 =====
+    thumbnailImage: "images/thumbnails/showreel-2026-thumb.jpg",  // ← 需要上傳
+    previewGif: "images/thumbnails/thumnailReel.gif",    // ← 需要上傳 (或用 jpg)
+    homeTitle: "2026 SHORT SHOWREEL",
+    homeSubtitle: "Recent works and experiments from 2024~2025",
+    
+    // ===== 專案詳細頁內容 =====
+    detailPage: {
+      // 基本資訊
+      title: "2026 Short Showreel (WIP)",
+      subtitle: "A collection of recent motion design works",
+      year: "2024-2025",
+      client: "Personal / Optoma",
+      role: "Motion Designer",
+      duration: "Ongoing",
+      
+      // 主要 Vimeo 影片連結
+      mainVideo: "https://player.vimeo.com/video/1173206156",  
+      
+      // 專案描述
+      description: `
+        A quick collection of recent works and experiments from 2024~2025, mostly done in Optoma.
+        Part of an ongoing portfolio update.
+      `,
+      
+      // 專案標籤
+      tags: ["Motion Design", "Showreel", "Animation", "3D"],
+      
+      // 照片集 (可以先留空,之後再加)
+      photos: [
+        // {
+        //   src: "images/projects/showreel-2026/frame1.jpg",
+        //   caption: "Key frame from the showreel"
+        // },
+        // {
+        //   src: "images/projects/showreel-2026/frame2.jpg",
+        //   caption: "Animation process"
+        // }
+      ],
+      
+      // 額外影片 (如果有的話)
+      additionalVideos: [],
+      
+      // 工具/技術
+      tools: ["After Effects", "Cinema 4D", "Premiere" ]
+    }
+  },
+  
+  {
     id: "motion-design-brand",
     
     // ===== 首頁顯示用 =====
