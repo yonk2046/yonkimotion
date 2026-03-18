@@ -84,7 +84,7 @@ const projects = [
     homeTitle: "MOTION DESIGN",
     homeSubtitle: "Interactive experience for brand identity",
     
-    // ===== 專案詳細頁內容 =====
+   // ===== 專案詳細頁內容 =====
     detailPage: {
       // 基本資訊
       title: "Brand Identity Motion Design",
