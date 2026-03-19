@@ -86,6 +86,7 @@
             font-size: 1.3rem;
             color: #666;
             line-height: 1.6;
+            margin-top: 1rem;
         }
         
         .hero-right {
@@ -138,31 +139,18 @@
             object-fit: cover;
         }
         
-        
-        .meta-item {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+        /* 內容區塊 - 居中但更寬 */
+        .content-section {
+            max-width: 1000px;
+            margin: 4rem auto;
+            padding: 0 2rem;
         }
         
-        .meta-label {
-            font-size: 0.85rem;
-            color: #999;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .meta-value {
-            font-size: 1.1rem;
+        .section-title {
+            font-size: 2rem;
             font-weight: 600;
+            margin-bottom: 2rem;
             color: #121212;
-        }
-        
-        /* 專案描述區 */
-        .project-description {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 4rem;
         }
         
         .description-text {
@@ -172,11 +160,7 @@
             white-space: pre-line;
         }
         
-        /* 標籤 - 暫時隱藏 */
-        .tags-section {
-            display: none;
-        }
-        
+        /* 標籤 */
         .tags-container {
             display: flex;
             flex-wrap: wrap;
@@ -193,18 +177,17 @@
             font-weight: 500;
         }
         
-        /* 照片網格 - 加入 padding */
+        /* 照片網格 - 全寬 */
         .photos-section {
             width: 100%;
-            padding: 4rem;
+            padding: 4rem 0;
         }
         
         .photos-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            gap: 1rem;
+            width: 100%;
         }
         
         .photo-item {
@@ -241,15 +224,13 @@
         /* 額外影片區 */
         .additional-videos {
             width: 100%;
-            padding: 4rem;
+            padding: 4rem 0;
         }
         
         .video-list {
             display: flex;
             flex-direction: column;
             gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
         }
         
         .video-item {
@@ -270,23 +251,11 @@
         }
         
         /* 工具/技術 */
-        .tools-section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 4rem;
-        }
-        
-        .section-title {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            color: #121212;
-        }
-        
         .tools-grid {
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
+            margin-top: 2rem;
         }
         
         .tool-item {
@@ -398,20 +367,9 @@
         
         /* 響應式設計 */
         @media (max-width: 1024px) {
-            .main-video-section {
-                padding: 2rem 2rem;
-            }
-            
             .project-hero {
-                padding: 2rem;
-            }
-            
-            .project-description {
-                padding: 2rem;
-            }
-            
-            .photos-section {
-                padding: 2rem;
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
             
             .photos-grid {
@@ -421,52 +379,15 @@
             .photo-item.full-width {
                 grid-column: span 1;
             }
-            
-            .additional-videos {
-                padding: 2rem;
-            }
-            
-            .tools-section {
-                padding: 2rem;
-            }
         }
         
         @media (max-width: 768px) {
-            .project-title {
+            .hero-left h1 {
                 font-size: 2.5rem;
             }
             
-            .project-subtitle {
+            .hero-left p {
                 font-size: 1.1rem;
-            }
-            
-            .project-meta {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .main-video-section {
-                padding: 1rem;
-            }
-            
-            .project-hero {
-                padding: 2rem 1rem;
-            }
-            
-            .project-description {
-                padding: 2rem 1rem;
-            }
-            
-            .photos-section {
-                padding: 2rem 1rem;
-            }
-            
-            .additional-videos {
-                padding: 2rem 1rem;
-            }
-            
-            .tools-section {
-                padding: 2rem 1rem;
             }
 
             footer {
@@ -551,26 +472,49 @@
         function renderProjectContent(project) {
             const detail = project.detailPage;
             
-            let html = `
-                <!-- 主要影片 -->
-                <section class="main-video-section">
-                    <div class="video-wrapper">
-                        ${detail.mainVideo.includes('vimeo.com') 
-                            ? `<iframe src="${detail.mainVideo}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`
-                            : `<video controls poster="${project.thumbnailImage}">
-                                <source src="${detail.mainVideo}" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>`
-                        }
+            // 判斷是否為 Vimeo 影片
+            const isVimeo = detail.mainVideo && detail.mainVideo.includes('vimeo.com');
+            const vimeoId = isVimeo ? detail.mainVideo.match(/vimeo\.com\/(?:video\/)?(\d+)/)?.[1] : null;
+            
+            let videoHTML = '';
+            if (isVimeo && vimeoId) {
+                // Vimeo 嵌入播放器
+                videoHTML = `
+                    <div class="video-wrapper" style="padding-bottom: 56.25%;">
+                        <iframe 
+                            src="https://player.vimeo.com/video/${vimeoId}?h=0&title=0&byline=0&portrait=0" 
+                            style="position:absolute;top:0;left:0;width:100%;height:100%;" 
+                            frameborder="0" 
+                            allow="autoplay; fullscreen; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
                     </div>
+                `;
+            } else {
+                // 一般 MP4 影片
+                videoHTML = `
+                    <div class="video-wrapper">
+                        <video controls poster="${project.thumbnailImage}">
+                            <source src="${detail.mainVideo}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                `;
+            }
+            
+            let html = `
+                <!-- 主要影片 (最上面) -->
+                <section class="main-video-section">
+                    ${videoHTML}
                 </section>
                 
-                <!-- Hero 區塊 - 標題和資訊在影片下方 -->
+                <!-- Hero 區塊 - 標題和資訊 -->
                 <div class="project-hero">
-                    <h1 class="project-title">${detail.title}</h1>
-                    <p class="project-subtitle">${detail.subtitle}</p>
-                    
-                    <div class="project-meta">
+                    <div class="hero-left">
+                        <h1>${detail.title}</h1>
+                        <p>${detail.subtitle || ''}</p>
+                    </div>
+                    <div class="hero-right">
                         <div class="meta-item">
                             <span class="meta-label">Year</span>
                             <span class="meta-value">${detail.year}</span>
@@ -591,13 +535,11 @@
                 </div>
                 
                 <!-- 專案描述 -->
-                ${detail.description ? `
-                <section class="project-description">
+                <section class="content-section">
                     <p class="description-text">${detail.description}</p>
                 </section>
-                ` : ''}
                 
-                <!-- 標籤 (暫時隱藏,但保留功能) -->
+                <!-- 標籤 -->
                 ${renderTags(detail.tags)}
                 
                 <!-- 照片集 -->
@@ -619,14 +561,12 @@
             const tagsHtml = tags.map(tag => `<span class="tag">${tag}</span>`).join('');
             
             return `
-                <section class="tags-section">
+                <section class="content-section">
                     <div class="tags-container">
                         ${tagsHtml}
                     </div>
                 </section>
             `;
-            // 註: 標籤目前隱藏 (.tags-section { display: none; })
-            // 如果未來需要顯示,只需移除 CSS 中的 display: none;
         }
 
         function renderPhotos(photos) {
@@ -683,7 +623,7 @@
             `).join('');
             
             return `
-                <section class="tools-section">
+                <section class="content-section">
                     <h2 class="section-title">Tools & Technologies</h2>
                     <div class="tools-grid">
                         ${toolsHtml}
