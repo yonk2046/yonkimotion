@@ -86,6 +86,7 @@
             font-size: 1.3rem;
             color: #666;
             line-height: 1.6;
+            margin-top: 1rem;
         }
         
         .hero-right {
@@ -471,12 +472,47 @@
         function renderProjectContent(project) {
             const detail = project.detailPage;
             
+            // 判斷是否為 Vimeo 影片
+            const isVimeo = detail.mainVideo && detail.mainVideo.includes('vimeo.com');
+            const vimeoId = isVimeo ? detail.mainVideo.match(/vimeo\.com\/(?:video\/)?(\d+)/)?.[1] : null;
+            
+            let videoHTML = '';
+            if (isVimeo && vimeoId) {
+                // Vimeo 嵌入播放器
+                videoHTML = `
+                    <div class="video-wrapper" style="padding-bottom: 56.25%;">
+                        <iframe 
+                            src="https://player.vimeo.com/video/${vimeoId}?h=0&title=0&byline=0&portrait=0" 
+                            style="position:absolute;top:0;left:0;width:100%;height:100%;" 
+                            frameborder="0" 
+                            allow="autoplay; fullscreen; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                `;
+            } else {
+                // 一般 MP4 影片
+                videoHTML = `
+                    <div class="video-wrapper">
+                        <video controls poster="${project.thumbnailImage}">
+                            <source src="${detail.mainVideo}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                `;
+            }
+            
             let html = `
-                <!-- Hero 區塊 -->
+                <!-- 主要影片 (最上面) -->
+                <section class="main-video-section">
+                    ${videoHTML}
+                </section>
+                
+                <!-- Hero 區塊 - 標題和資訊 -->
                 <div class="project-hero">
                     <div class="hero-left">
                         <h1>${detail.title}</h1>
-                        <p>${detail.description}</p>
+                        <p>${detail.subtitle || ''}</p>
                     </div>
                     <div class="hero-right">
                         <div class="meta-item">
@@ -498,14 +534,9 @@
                     </div>
                 </div>
                 
-                <!-- 主要影片 -->
-                <section class="main-video-section">
-                    <div class="video-wrapper">
-                        <video controls poster="${project.thumbnailImage}">
-                            <source src="${detail.mainVideo}" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
+                <!-- 專案描述 -->
+                <section class="content-section">
+                    <p class="description-text">${detail.description}</p>
                 </section>
                 
                 <!-- 標籤 -->
