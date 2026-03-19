@@ -147,9 +147,9 @@
         }
         
         .section-title {
-            font-size: 2rem;
+            font-size: 1.2rem;
             font-weight: 600;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             color: #121212;
         }
         
@@ -254,16 +254,17 @@
         .tools-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 2rem;
+            gap: 0.5rem;
+            margin-top: 1rem;
         }
         
         .tool-item {
-            padding: 0.75rem 1.5rem;
+            padding: 0.4rem 0.8rem;
             background-color: white;
-            border: 2px solid #121212;
-            border-radius: 8px;
-            font-weight: 600;
+            border: 1px solid #121212;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 0.85rem;
             transition: all 0.3s ease;
         }
         
@@ -556,6 +557,10 @@
         }
 
         function renderTags(tags) {
+            // 暫時註解掉標籤顯示
+            return '';
+            
+            /* 
             if (!tags || tags.length === 0) return '';
             
             const tagsHtml = tags.map(tag => `<span class="tag">${tag}</span>`).join('');
@@ -567,6 +572,7 @@
                     </div>
                 </section>
             `;
+            */
         }
 
         function renderPhotos(photos) {
